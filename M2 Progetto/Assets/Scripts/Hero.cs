@@ -12,13 +12,14 @@ public class Hero
     [SerializeField] private Stats.ELEMENT weakness;
     [SerializeField] private Weapon weapon;
 
-    public Hero(string name , int hp , Stats baseStats , Stats.ELEMENT resistance , Stats.ELEMENT weakness )
+    public Hero(string name , int hp , Stats baseStats , Stats.ELEMENT resistance , Stats.ELEMENT weakness , Weapon weapon)
     {
         this.name = name;
         this.hp = hp;
         this.baseStats = baseStats;
         this.resistance = resistance;
         this.weakness = weakness;
+        this.weapon = weapon;
 
     }
 
@@ -99,4 +100,18 @@ public class Hero
     {
         this.weakness = weakness;
     }
+
+    public Weapon GetWeapon()
+    {
+        return weapon;
+    }
+
+    public void SetWeapon(Weapon weapon)
+    {
+        this.weapon=weapon;
+    }
+        
+
+        
+        
 }

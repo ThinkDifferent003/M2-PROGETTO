@@ -18,18 +18,10 @@ public struct Stats
         this.aim = 10;
         this.eva = 10;
     }
-    public static int Sum(Stats a , Stats b )
+    public static Stats Sum (Stats a , Stats b )
     {
-        int risultato;
-        risultato = a.atk + b.atk;
-        risultato = a.def + b.def;
-        risultato = a.res + b.res;
-        risultato = a.spd + b.spd;
-        risultato = a.crt + b.crt;
-        risultato = a.aim + b.aim;
-        risultato = a.eva + b.eva;
-
-        return risultato ;
+        return new Stats (a.atk + b.atk , a.def + b.def , a.res + b.res , + a.spd + b.spd , a.crt + b.crt , a.aim + b.aim , a.eva + b.eva);
+        
     }
 
     public enum ELEMENT { NONE , FIRE , ICE , LIGHTNING}

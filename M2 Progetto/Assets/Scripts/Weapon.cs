@@ -54,9 +54,9 @@ public class Weapon
         return bonusStats; 
     }
 
-    public void SetStats(Stats stats)
+    public void SetStats(Stats bonusStats)
     {
-        this.bonusStats=stats;
+        this.bonusStats = bonusStats;
     }
   
 }

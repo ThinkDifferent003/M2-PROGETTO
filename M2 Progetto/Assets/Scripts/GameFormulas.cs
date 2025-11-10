@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public static class GameFormulas 
@@ -97,23 +98,41 @@ public static class GameFormulas
             return false;
     }
 
-    public static int CalculateDamage(Hero attacker , Hero defender)
+    public static int CalculateDamage(Hero attacker , Hero defender , Weapon weapon)
     {
-        Hero hero1 = new Hero("Micio", 7,  new Stats() , Stats.ELEMENT.FIRE , Stats.ELEMENT.LIGHTNING);
-        Weapon weapon1 = new Weapon("Graffio", Weapon.DAMAGE_TYPE.PHYSICAL, Stats.ELEMENT.LIGHTNING, new Stats() );
-        Stats.Sum (hero1.GetBaseStats() , weapon1.GetStats());
+        //Hero hero1 = new Hero("Micio", 7,  new Stats() , Stats.ELEMENT.FIRE , Stats.ELEMENT.LIGHTNING , new Weapon());
+        //Weapon weapon1 = new Weapon("Graffio", Weapon.DAMAGE_TYPE.PHYSICAL, Stats.ELEMENT.LIGHTNING, new Stats() );
+        ////Stats.Sum(hero1.GetBaseStats(), weapon1.GetStats());
 
-        Hero hero2 = new Hero("Cane" , 1, new Stats(), Stats.ELEMENT.NONE, Stats.ELEMENT.ICE);
-        Weapon weapon2 = new Weapon("Morso", Weapon.DAMAGE_TYPE.PHYSICAL, Stats.ELEMENT.FIRE , new Stats());
-        Stats.Sum (hero2.GetBaseStats() , weapon2.GetStats());
 
-        switch
+        ////Hero hero2 = new Hero("Cane" , 1, new Stats(), Stats.ELEMENT.NONE, Stats.ELEMENT.ICE);
+        ////Weapon weapon2 = new Weapon("Morso", Weapon.DAMAGE_TYPE.PHYSICAL, Stats.ELEMENT.FIRE , new Stats());
+        ////Stats.Sum(hero2.GetBaseStats(), weapon2.GetStats());
+        //Stats weaponStats = hero1.GetWeapon();
+        ////weapon1.GetDmgType();
+        //Stats.Sum(attacker.GetBaseStats(), );
+        int attackerStats = 0;
+        //Stats attackerWeapon = attacker.SetWeapon(Weapon.GetStats());
+        //Stats defenderStats = defender.GetBaseStats();
+
+        //switch(attackerStats)
+        //{
+        //    case attackerStats.SetWeapon(Weapon.DAMAGE_TYPE.PHYSICAL):
+        //        return defenderStats.def;
+        //        break;
+        //}
+        if (attacker.GetWeapon() != null)
         {
-            case weapon1.GetDmgType():
-                
-
+            Stats.Sum(attacker.GetBaseStats(), weapon.GetStats());
+            return attackerStats;
+        }
+        else if (defender.GetWeapon() != null)
+        {
+            Stats.Sum(defender.GetBaseStats(), weapon.GetStats());
+            return attackerStats;
         }
 
-    
+        
+       
     }
 }
