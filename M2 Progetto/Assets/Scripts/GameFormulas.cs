@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public static class GameFormulas 
@@ -85,7 +86,34 @@ public static class GameFormulas
 
     public static bool IsCrit (int critValue)
     {
-
+        int numberRandom;
+        numberRandom= Random.Range(0, 100);
+        if (numberRandom < critValue)
+        {
+            Debug.Log($"CRIT");
+            return true;
+        }
+        else 
+            return false;
     }
 
+    public static int CalculateDamage(Hero attacker , Hero defender)
+    {
+        Hero hero1 = new Hero("Micio", 7,  new Stats() , Stats.ELEMENT.FIRE , Stats.ELEMENT.LIGHTNING);
+        Weapon weapon1 = new Weapon("Graffio", Weapon.DAMAGE_TYPE.PHYSICAL, Stats.ELEMENT.LIGHTNING, new Stats() );
+        Stats.Sum (hero1.GetBaseStats() , weapon1.GetStats());
+
+        Hero hero2 = new Hero("Cane" , 1, new Stats(), Stats.ELEMENT.NONE, Stats.ELEMENT.ICE);
+        Weapon weapon2 = new Weapon("Morso", Weapon.DAMAGE_TYPE.PHYSICAL, Stats.ELEMENT.FIRE , new Stats());
+        Stats.Sum (hero2.GetBaseStats() , weapon2.GetStats());
+
+        switch
+        {
+            case weapon1.GetDmgType():
+                
+
+        }
+
+    
+    }
 }

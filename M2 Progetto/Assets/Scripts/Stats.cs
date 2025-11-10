@@ -11,12 +11,12 @@ public struct Stats
     public Stats(int atk, int def, int res , int spd , int crt , int aim ,int eva)
     {
         this.atk = 10;
-        this.def = def;
-        this.res = res;
-        this.spd = spd;
-        this.crt = crt;
+        this.def = 10;
+        this.res = 10;
+        this.spd = 10;
+        this.crt = 10;
         this.aim = 10;
-        this.eva = eva;
+        this.eva = 10;
     }
     public static int Sum(Stats a , Stats b )
     {
