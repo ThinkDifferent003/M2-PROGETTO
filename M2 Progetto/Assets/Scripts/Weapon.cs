@@ -6,10 +6,10 @@ using UnityEngine;
 public class Weapon 
 {
     public enum DAMAGE_TYPE { PHYSICAL , MAGICAL}
-    private string name;
-    private DAMAGE_TYPE dmgType;
-    private Stats.ELEMENT elem;
-    private Stats bonusStats;
+    [SerializeField] private string name;
+    [SerializeField] private DAMAGE_TYPE dmgType;
+    [SerializeField] private Stats.ELEMENT elem;
+    [SerializeField] private Stats bonusStats;
 
     public Weapon ( string name , DAMAGE_TYPE dmgType , Stats.ELEMENT elem , Stats bonusStats)
     {
@@ -22,12 +22,12 @@ public class Weapon
     {
         return name;
     }
-    public void SetName( string nome)
+    public void SetName( string nameNew)
     {
         
-        if(string.IsNullOrWhiteSpace(nome))
+        if(string.IsNullOrWhiteSpace(nameNew))
         {
-            name = nome;
+            name = nameNew;
         }
     }
     public DAMAGE_TYPE GetDmgType()
@@ -35,14 +35,28 @@ public class Weapon
         return dmgType;
     }
 
+    public void SetDmgType(DAMAGE_TYPE damage)
+    {
+        dmgType = damage;
+    }
+
     public Stats.ELEMENT GetElement()
     {
         return elem;
     }
 
+    public void SetElement(Stats.ELEMENT elem)
+    {
+        this.elem = elem;
+    }
     public Stats GetStats()
     {
         return bonusStats; 
+    }
+
+    public void SetStats(Stats stats)
+    {
+        this.bonusStats=stats;
     }
   
 }
