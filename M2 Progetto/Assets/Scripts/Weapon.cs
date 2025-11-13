@@ -8,10 +8,10 @@ public class Weapon
     public enum DAMAGE_TYPE { PHYSICAL , MAGICAL}
     [SerializeField] private string name;
     [SerializeField] private DAMAGE_TYPE dmgType;
-    [SerializeField] private Stats.ELEMENT elem;
+    [SerializeField] private ELEMENT elem;
     [SerializeField] private Stats bonusStats;
 
-    public Weapon ( string name , DAMAGE_TYPE dmgType , Stats.ELEMENT elem , Stats bonusStats)
+    public Weapon ( string name , DAMAGE_TYPE dmgType , ELEMENT elem , Stats bonusStats)
     {
         this.name = name;
         this.dmgType = dmgType;
@@ -40,12 +40,12 @@ public class Weapon
         dmgType = damage;
     }
 
-    public Stats.ELEMENT GetElement()
+    public ELEMENT GetElement()
     {
         return elem;
     }
 
-    public void SetElement(Stats.ELEMENT elem)
+    public void SetElement(ELEMENT elem)
     {
         this.elem = elem;
     }

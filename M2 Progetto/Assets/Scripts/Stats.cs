@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+public enum ELEMENT { NONE , FIRE , ICE , LIGHTNING}
+
 [System.Serializable]
+
 public struct Stats
 {
     public int atk, def, res, spd, crt, aim, eva;
 
     public Stats(int atk, int def, int res , int spd , int crt , int aim ,int eva)
     {
-        this.atk = 10;
-        this.def = 10;
-        this.res = 10;
-        this.spd = 10;
-        this.crt = 10;
-        this.aim = 10;
-        this.eva = 10;
+        this.atk = atk;
+        this.def = def;
+        this.res = res;
+        this.spd = spd;
+        this.crt = crt;
+        this.aim = aim;
+        this.eva = eva;
     }
     public static Stats Sum (Stats a , Stats b )
     {
@@ -24,8 +27,9 @@ public struct Stats
         
     }
 
-    public enum ELEMENT { NONE , FIRE , ICE , LIGHTNING}
+    
 }
+
 
 
 

@@ -9,11 +9,11 @@ public class Hero
     [SerializeField] private string name;
     [SerializeField] private int hp;
     [SerializeField] private Stats baseStats;
-    [SerializeField] private Stats.ELEMENT resistance;
-    [SerializeField] private Stats.ELEMENT weakness;
+    [SerializeField] private ELEMENT resistance;
+    [SerializeField] private ELEMENT weakness;
     [SerializeField] private Weapon weapon;
 
-    public Hero(string name , int hp , Stats baseStats , Stats.ELEMENT resistance , Stats.ELEMENT weakness , Weapon weapon)
+    public Hero(string name , int hp , Stats baseStats , ELEMENT resistance , ELEMENT weakness , Weapon weapon)
     {
         this.name = name;
         this.hp = hp;
@@ -64,6 +64,8 @@ public class Hero
 
     public int GetHp()
     {
+        if (hp <= 0)
+            hp = 0;
         return hp;
     }
 
@@ -82,22 +84,22 @@ public class Hero
         this.baseStats = baseStats;
     }
 
-    public Stats.ELEMENT GetResitance()
+    public ELEMENT GetResitance()
     {
         return resistance;
     }
 
-    public void SetResistance(Stats.ELEMENT resistance)
+    public void SetResistance(ELEMENT resistance)
     {
         this.resistance = resistance;
     }
 
-    public Stats.ELEMENT GetWeakness()
+    public ELEMENT GetWeakness()
     {
         return weakness;
     }
 
-    public void SetWeakness(Stats.ELEMENT weakness)
+    public void SetWeakness(ELEMENT weakness)
     {
         this.weakness = weakness;
     }

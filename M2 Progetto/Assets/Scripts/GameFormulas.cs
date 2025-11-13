@@ -7,55 +7,17 @@ using UnityEngine;
 
 public static class GameFormulas 
 {
-    public static bool HasElementAdvantage(Stats.ELEMENT attackElement , Hero defender)
+    public static bool HasElementAdvantage(ELEMENT attackElement , Hero defender)
     {
-        switch (attackElement)
-        {
-            case Stats.ELEMENT.FIRE:
-                if (attackElement == Stats.ELEMENT.FIRE)
-                    return true;
-                break;
-            case Stats.ELEMENT.ICE:
-                if (attackElement == Stats.ELEMENT.ICE)
-                    return true;
-                break;
-            case Stats.ELEMENT.LIGHTNING:
-                if (attackElement == Stats.ELEMENT.LIGHTNING)
-                    return true;
-                break;
-            case Stats.ELEMENT.NONE:
-                if (attackElement == Stats.ELEMENT.NONE)
-                    return true;
-                break;
-        }
-         return false;   
+        return attackElement == defender.GetWeakness();
     }
 
-    public static bool HasElementDisadvantage(Stats.ELEMENT attackElement, Hero defender)
+    public static bool HasElementDisadvantage(ELEMENT attackElement, Hero defender)
     {
-        switch (attackElement)
-        {
-            case Stats.ELEMENT.FIRE:
-                if (attackElement == Stats.ELEMENT.FIRE)
-                    return true;
-                break;
-            case Stats.ELEMENT.ICE:
-                if (attackElement == Stats.ELEMENT.ICE)
-                    return true;
-                break;
-            case Stats.ELEMENT.LIGHTNING:
-                if (attackElement == Stats.ELEMENT.LIGHTNING)
-                    return true;
-                break;
-            case Stats.ELEMENT.NONE:
-                if (attackElement == Stats.ELEMENT.NONE)
-                    return true;
-                break;
-        }
-        return false;
+        return attackElement == defender.GetResitance();
     }
 
-    public static float EvaluateElementalModifier(Stats.ELEMENT attackElement, Hero defender)
+    public static float EvaluateElementalModifier( ELEMENT attackElement, Hero defender)
     {
         if (HasElementAdvantage(attackElement, defender))
         {
@@ -107,17 +69,7 @@ public static class GameFormulas
         Stats defenderStats = Stats.Sum(defender.GetBaseStats() , defenderWeapon.GetStats());
 
         int defense = 0;
-        //switch(attackerWeapon.GetDmgType())
-        //{
-        //    case Weapon.DAMAGE_TYPE.PHYSICAL:
-        //         defense = defenderStats.def;
-        //        break;
-
-        //    case Weapon.DAMAGE_TYPE.MAGICAL:
-        //        defense = defenderStats.res;
-        //        break;
-
-        //}
+        
 
         if (attackerWeapon.GetDmgType() == Weapon.DAMAGE_TYPE.PHYSICAL)
         {
@@ -127,24 +79,22 @@ public static class GameFormulas
         {
             defense = defenderStats.res;
         }
-        
 
-            int damageBase = attackerStats.atk - defense;
-        EvaluateElementalModifier(Stats.ELEMENT.NONE, defender);
-        EvaluateElementalModifier(Stats.ELEMENT.FIRE, defender);
-        EvaluateElementalModifier(Stats.ELEMENT.ICE, defender);
-        EvaluateElementalModifier(Stats.ELEMENT.LIGHTNING, defender);
+
+        int damageBase = attackerStats.atk - defense;
+        float elementMod = EvaluateElementalModifier(attackerWeapon.GetElement(), defender);
+        damageBase = Mathf.RoundToInt(damageBase * elementMod);
 
         if (IsCrit(damageBase))
         {
             damageBase *= 2;
         }
 
-        //if (damageBase < 0)
-        //{
-        //    damageBase = 0;
-        //}
-        
+        if (damageBase < 0)
+        {
+            damageBase = 0;
+        }
+
         return damageBase;
     }
 }
