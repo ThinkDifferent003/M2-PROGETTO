@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting.ReorderableList.Element_Adder_Menu;
 using UnityEngine;
 
+[System.Serializable]
 public class Hero
 {
     [SerializeField] private string name;

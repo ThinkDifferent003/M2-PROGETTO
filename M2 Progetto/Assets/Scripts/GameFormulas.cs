@@ -98,41 +98,53 @@ public static class GameFormulas
             return false;
     }
 
-    public static int CalculateDamage(Hero attacker , Hero defender , Weapon weapon)
+    public static int CalculateDamage(Hero attacker , Hero defender)
     {
-        //Hero hero1 = new Hero("Micio", 7,  new Stats() , Stats.ELEMENT.FIRE , Stats.ELEMENT.LIGHTNING , new Weapon());
-        //Weapon weapon1 = new Weapon("Graffio", Weapon.DAMAGE_TYPE.PHYSICAL, Stats.ELEMENT.LIGHTNING, new Stats() );
-        ////Stats.Sum(hero1.GetBaseStats(), weapon1.GetStats());
+        Weapon attackerWeapon = attacker.GetWeapon();
+        Stats attackerStats = Stats.Sum(attacker.GetBaseStats() , attackerWeapon.GetStats());
 
+        Weapon defenderWeapon = defender.GetWeapon();
+        Stats defenderStats = Stats.Sum(defender.GetBaseStats() , defenderWeapon.GetStats());
 
-        ////Hero hero2 = new Hero("Cane" , 1, new Stats(), Stats.ELEMENT.NONE, Stats.ELEMENT.ICE);
-        ////Weapon weapon2 = new Weapon("Morso", Weapon.DAMAGE_TYPE.PHYSICAL, Stats.ELEMENT.FIRE , new Stats());
-        ////Stats.Sum(hero2.GetBaseStats(), weapon2.GetStats());
-        //Stats weaponStats = hero1.GetWeapon();
-        ////weapon1.GetDmgType();
-        //Stats.Sum(attacker.GetBaseStats(), );
-        int attackerStats = 0;
-        //Stats attackerWeapon = attacker.SetWeapon(Weapon.GetStats());
-        //Stats defenderStats = defender.GetBaseStats();
-
-        //switch(attackerStats)
+        int defense = 0;
+        //switch(attackerWeapon.GetDmgType())
         //{
-        //    case attackerStats.SetWeapon(Weapon.DAMAGE_TYPE.PHYSICAL):
-        //        return defenderStats.def;
+        //    case Weapon.DAMAGE_TYPE.PHYSICAL:
+        //         defense = defenderStats.def;
         //        break;
+
+        //    case Weapon.DAMAGE_TYPE.MAGICAL:
+        //        defense = defenderStats.res;
+        //        break;
+
         //}
-        if (attacker.GetWeapon() != null)
+
+        if (attackerWeapon.GetDmgType() == Weapon.DAMAGE_TYPE.PHYSICAL)
         {
-            Stats.Sum(attacker.GetBaseStats(), weapon.GetStats());
-            return attackerStats;
+            defense = defenderStats.def;
         }
-        else if (defender.GetWeapon() != null)
+        else if (attackerWeapon.GetDmgType() == Weapon.DAMAGE_TYPE.MAGICAL)
         {
-            Stats.Sum(defender.GetBaseStats(), weapon.GetStats());
-            return attackerStats;
+            defense = defenderStats.res;
+        }
+        
+
+            int damageBase = attackerStats.atk - defense;
+        EvaluateElementalModifier(Stats.ELEMENT.NONE, defender);
+        EvaluateElementalModifier(Stats.ELEMENT.FIRE, defender);
+        EvaluateElementalModifier(Stats.ELEMENT.ICE, defender);
+        EvaluateElementalModifier(Stats.ELEMENT.LIGHTNING, defender);
+
+        if (IsCrit(damageBase))
+        {
+            damageBase *= 2;
         }
 
+        //if (damageBase < 0)
+        //{
+        //    damageBase = 0;
+        //}
         
-       
+        return damageBase;
     }
 }
