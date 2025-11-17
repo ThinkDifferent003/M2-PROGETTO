@@ -8,6 +8,7 @@ public class M1ProjectTest : MonoBehaviour
 
     [SerializeField] private Hero a;
     [SerializeField] private Hero b;
+    private bool finishBattle = false;
    
 
     
@@ -45,7 +46,8 @@ public class M1ProjectTest : MonoBehaviour
             if (!b.IsAlive())
             {
                 Debug.Log($"L'eroe {a.GetName()} ha VINTO");
-                
+                finishBattle = true;
+                return;
             }
             else if (b.IsAlive())
             {
@@ -84,7 +86,8 @@ public class M1ProjectTest : MonoBehaviour
             if (!a.IsAlive())
             {
                 Debug.Log($"L'eroe {b.GetName()} ha VINTO");
-                
+                finishBattle = true;
+                return;
             }
             else if (a.IsAlive())
             {
@@ -127,8 +130,12 @@ public class M1ProjectTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        WhoStart();
-        Attack();
+        if (!finishBattle)
+        {
+            WhoStart();
+            Attack( );
+
+        }
+       
     }
 }
