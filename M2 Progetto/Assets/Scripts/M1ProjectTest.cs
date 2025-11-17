@@ -42,12 +42,12 @@ public class M1ProjectTest : MonoBehaviour
             Debug.Log($"L'eroe {b.GetName()} riceve {damage} danni da parte dell' Eroe {a.GetName()} e gli rimangono {b.GetHp()} HP");
 
 
-            if (b.IsAlive())
+            if (!b.IsAlive())
             {
                 Debug.Log($"L'eroe {a.GetName()} ha VINTO");
                 
             }
-            else if (!b.IsAlive())
+            else if (b.IsAlive())
             {
                 Debug.Log($"L'eroe {b.GetName()} è sopravvisuto");
                 CaneAttack();
@@ -127,20 +127,8 @@ public class M1ProjectTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         WhoStart();
         Attack();
-
-
-        
-
-        
-
-
-
-
-       
-
-
     }
 }

@@ -460,15 +460,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   a:
     name: micio
-    hp: 0
+    hp: 10
     baseStats:
-      atk: 10
-      def: 2
-      res: 5
-      spd: 3
-      crt: 9
-      aim: 8
-      eva: 4
+      atk: 100
+      def: 200
+      res: 500
+      spd: 300
+      crt: 900
+      aim: 800
+      eva: 400
     resistance: 1
     weakness: 3
     weapon:
