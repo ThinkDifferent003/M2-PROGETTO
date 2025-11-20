@@ -463,12 +463,12 @@ MonoBehaviour:
     hp: 10
     baseStats:
       atk: 100
-      def: 200
-      res: 500
-      spd: 300
-      crt: 900
-      aim: 800
-      eva: 400
+      def: 10
+      res: 10
+      spd: 10
+      crt: 10
+      aim: 100
+      eva: 10
     resistance: 1
     weakness: 3
     weapon:
@@ -485,15 +485,15 @@ MonoBehaviour:
         eva: 1
   b:
     name: cane
-    hp: 3
+    hp: 30
     baseStats:
-      atk: 6
-      def: 4
-      res: 8
-      spd: 7
-      crt: 3
-      aim: 9
-      eva: 8
+      atk: 15
+      def: 10
+      res: 10
+      spd: 10
+      crt: 10
+      aim: 100
+      eva: 10
     resistance: 2
     weakness: 1
     weapon:
