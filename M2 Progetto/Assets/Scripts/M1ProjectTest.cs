@@ -79,7 +79,7 @@ public class M1ProjectTest : MonoBehaviour
             damage = GameFormulas.CalculateDamage(b, a);
             Debug.Log($"L'eroe {b.GetName()} infligge a Eroe {a.GetName()} la bellezza di {damage} danni");
 
-            b.TakeDamage(damage);
+            a.TakeDamage(damage);
             Debug.Log($"L'eroe {a.GetName()} riceve {damage} danni da parte dell' Eroe {b.GetName()} e gli rimangono {a.GetHp()} HP");
 
 
@@ -101,12 +101,7 @@ public class M1ProjectTest : MonoBehaviour
         }
     }
 
-    public void Attack()
-    {
-        
-        MicioAttack();
-        CaneAttack();
-    }
+   
 
     public void WhoStart()
     {
@@ -133,7 +128,7 @@ public class M1ProjectTest : MonoBehaviour
         if (!finishBattle)
         {
             WhoStart();
-            Attack( );
+            MicioAttack( );
 
         }
        
