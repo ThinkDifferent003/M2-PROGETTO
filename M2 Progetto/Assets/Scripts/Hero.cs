@@ -31,7 +31,11 @@ public class Hero
 
     public void TakeDamage(int damage)
     {
-        AddHp( - damage);
+        AddHp(-damage);
+        if (hp < 0)
+        {
+            hp = 0;
+        }
     }
 
     public bool IsAlive()
@@ -49,10 +53,8 @@ public class Hero
         
     }
 
-    public string GetName()
-    {
-        return name;
-    }
+    public string GetName() => name;
+   
     public void SetName(string nameNew)
     {
 
@@ -62,53 +64,41 @@ public class Hero
         }
     }
 
-    public int GetHp()
-    {
-        if (hp <= 0)
-            hp = 0;
-        return hp;
-    }
+    public int GetHp() => hp;
+    
 
     public void SetHp(int hp)
     {
         this.hp = hp;
     }
 
-    public Stats GetBaseStats()
-    {
-        return baseStats;
-    }
+    public Stats GetBaseStats() => baseStats;
+   
+    
 
     public void SetBaseStats(Stats baseStats)
     {
         this.baseStats = baseStats;
     }
 
-    public ELEMENT GetResitance()
-    {
-        return resistance;
-    }
+    public ELEMENT GetResitance() => resistance;
+    
 
     public void SetResistance(ELEMENT resistance)
     {
         this.resistance = resistance;
     }
 
-    public ELEMENT GetWeakness()
-    {
-        return weakness;
-    }
+    public ELEMENT GetWeakness() => weakness;
+    
 
     public void SetWeakness(ELEMENT weakness)
     {
         this.weakness = weakness;
     }
 
-    public Weapon GetWeapon()
-    {
-        return weapon;
-    }
-
+    public Weapon GetWeapon() => weapon;
+    
     public void SetWeapon(Weapon weapon)
     {
         this.weapon=weapon;

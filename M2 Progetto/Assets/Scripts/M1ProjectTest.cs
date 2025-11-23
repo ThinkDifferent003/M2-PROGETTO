@@ -31,15 +31,16 @@ public class M1ProjectTest : MonoBehaviour
         Debug.Log($"L'Eroe {a.GetName()} ha sferrato {damage} danni");
         b.TakeDamage(damage);
         Debug.Log($"L'Eroe {b.GetName()} ha ricevuto {damage} danni!");
-        Debug.Log($"HP rimanenti : {b.GetHp()}");
-        if (!b.IsAlive())
+        Debug.Log($"HP rimanenti di {b.GetName()} : {b.GetHp()}");
+        if (b.IsAlive())
         {
-            Debug.Log($"L'Eroe {a.GetName()} ha VINTO");
-            state = 3;
-        }
-        else
-        {
+            Debug.Log($"L'Eroe {b.GetName()} ha resistito");
             state = 2;
+        }
+        else if (!b.IsAlive())
+        {
+            Debug.Log($"L'Eroe {a.GetName()} ha VINTO!");
+            state = 3;
         }
     }
 
@@ -56,15 +57,16 @@ public class M1ProjectTest : MonoBehaviour
         Debug.Log($"L'Eroe {b.GetName()} ha sferrato {damage} danni");
         a.TakeDamage(damage);
         Debug.Log($"L'Eroe {a.GetName()} ha ricevuto {damage} danni!");
-        Debug.Log($"HP rimanenti . {a.GetHp()}");
-        if (!a.IsAlive())
+        Debug.Log($"HP rimanenti di {a.GetName()} : {a.GetHp()}");
+        if (a.IsAlive())
         {
-            Debug.Log($"L'eroe {b.GetName()} ha VINTO");
-            state = 3;
-        }
-        else
-        {
+            Debug.Log($"L'eroe {a.GetName()} ha resistito");
             state = 1;
+        }
+        else if (!a.IsAlive())
+        {
+            Debug.Log($"L'Eroe {b.GetName()} ha VINTO!");
+            state = 3;
         }
     }
 
@@ -86,14 +88,9 @@ public class M1ProjectTest : MonoBehaviour
         }
     }
 
-
-
-
-    // Update is called once per frame
-    void Update()
+    public void Switch()
     {
-        
-         switch (state)
+        switch (state)
         {
             case 0:
                 WhoStart();
@@ -116,9 +113,15 @@ public class M1ProjectTest : MonoBehaviour
                 Debug.Log("Fine");
                 break;
         }
-            
 
-        
-       
+    }
+
+
+
+
+    // Update is called once per frame
+    void Update()
+    {
+        Switch();
     }
 }

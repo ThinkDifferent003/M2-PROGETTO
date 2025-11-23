@@ -18,10 +18,8 @@ public class Weapon
         this.elem = elem;
         this.bonusStats = bonusStats;
     }
-    public string GetName()
-    {
-        return name;
-    }
+    public string GetName() => name;
+   
     public void SetName( string nameNew)
     {
         
@@ -30,29 +28,22 @@ public class Weapon
             name = nameNew;
         }
     }
-    public DAMAGE_TYPE GetDmgType()
-    {
-        return dmgType;
-    }
+    public DAMAGE_TYPE GetDmgType() => dmgType;
+   
 
     public void SetDmgType(DAMAGE_TYPE damage)
     {
         dmgType = damage;
     }
 
-    public ELEMENT GetElement()
-    {
-        return elem;
-    }
-
+    public ELEMENT GetElement() => elem;
+    
     public void SetElement(ELEMENT elem)
     {
         this.elem = elem;
     }
-    public Stats GetStats()
-    {
-        return bonusStats; 
-    }
+    public Stats GetStats() => bonusStats;
+   
 
     public void SetStats(Stats bonusStats)
     {
