@@ -460,14 +460,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   a:
     name: micio
-    hp: 10
+    hp: 20
     baseStats:
-      atk: 100
+      atk: 20
       def: 10
       res: 10
       spd: 10
       crt: 10
-      aim: 100
+      aim: 500
       eva: 10
     resistance: 1
     weakness: 3
@@ -485,7 +485,7 @@ MonoBehaviour:
         eva: 1
   b:
     name: cane
-    hp: 30
+    hp: 50
     baseStats:
       atk: 15
       def: 10

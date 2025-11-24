@@ -17,64 +17,51 @@ public class M1ProjectTest : MonoBehaviour
     {
         
     }
-
-    public void MicioAttack()
+    public int GetTotalSpeed(Hero spd)
     {
-        Debug.Log($"L'Eroe {a.GetName()} sta attaccando l'Eroe {b.GetName()}");
-        if (!GameFormulas.HasHit(a.GetBaseStats(), b.GetBaseStats()))
+        return spd.GetBaseStats().spd + spd.GetWeapon().GetStats().spd;
+    }
+    public void Attack(Hero attacker , Hero defender ,int nextState)
+    {
+        Debug.Log($"L'Eroe {attacker.GetName()} sta attaccando l'Eroe {defender.GetName()}");
+        if (!GameFormulas.HasHit(attacker.GetBaseStats(), defender.GetBaseStats()))
         {
-            Debug.Log($"L'Eroe {b.GetName()} ha schivato il colpo");
-            state = 2;
+            Debug.Log($"L'Eroe {defender.GetName()} ha schivato il colpo");
+            state = nextState;
             return;
         }
-        int damage = GameFormulas.CalculateDamage(a , b);
-        Debug.Log($"L'Eroe {a.GetName()} ha sferrato {damage} danni");
+        int damage = GameFormulas.CalculateDamage(attacker, defender);
+        Debug.Log($"L'Eroe {attacker.GetName()} ha sferrato {damage} danni");
         b.TakeDamage(damage);
-        Debug.Log($"L'Eroe {b.GetName()} ha ricevuto {damage} danni!");
-        Debug.Log($"HP rimanenti di {b.GetName()} : {b.GetHp()}");
-        if (b.IsAlive())
+        Debug.Log($"L'Eroe {defender.GetName()} ha ricevuto {damage} danni!");
+        Debug.Log($"HP rimanenti di {defender.GetName()} : {defender.GetHp()}");
+        if (defender.IsAlive())
         {
-            Debug.Log($"L'Eroe {b.GetName()} ha resistito");
-            state = 2;
+            Debug.Log($"L'Eroe {defender.GetName()} ha resistito");
+            state = nextState;
         }
-        else if (!b.IsAlive())
+        else  
         {
-            Debug.Log($"L'Eroe {a.GetName()} ha VINTO!");
+            Debug.Log($"L'Eroe {attacker.GetName()} ha VINTO!");
             state = 3;
         }
     }
 
+    public void MicioAttack()
+    {
+        Attack(a,b,2);
+    }
+
     public void CaneAttack()
     {
-        Debug.Log($"L'eroe {b.GetName()} sta attaccando l'Eroe {a.GetName()}");
-        if (!GameFormulas.HasHit(b.GetBaseStats(), a.GetBaseStats()))
-        {
-            Debug.Log($"L'Eroe {a.GetName()} ha schivato il colpo");
-            state = 1;
-            return;
-        }
-        int damage = GameFormulas.CalculateDamage(b , a);
-        Debug.Log($"L'Eroe {b.GetName()} ha sferrato {damage} danni");
-        a.TakeDamage(damage);
-        Debug.Log($"L'Eroe {a.GetName()} ha ricevuto {damage} danni!");
-        Debug.Log($"HP rimanenti di {a.GetName()} : {a.GetHp()}");
-        if (a.IsAlive())
-        {
-            Debug.Log($"L'eroe {a.GetName()} ha resistito");
-            state = 1;
-        }
-        else if (!a.IsAlive())
-        {
-            Debug.Log($"L'Eroe {b.GetName()} ha VINTO!");
-            state = 3;
-        }
+        Attack(b,a,1);
     }
 
     
 
     public void WhoStart()
     {
-       if (a.GetBaseStats().spd + a.GetWeapon().GetStats().spd > b.GetBaseStats().spd + b.GetWeapon().GetStats().spd)
+       if (GetTotalSpeed(a) >= GetTotalSpeed(b))
         {
             Debug.Log($"L'Eroe {a.GetName()} attacherà per primo l'Eroe {b.GetName()}");
 
@@ -94,7 +81,7 @@ public class M1ProjectTest : MonoBehaviour
         {
             case 0:
                 WhoStart();
-                if (a.GetBaseStats().spd +a.GetWeapon().GetStats().spd >= b.GetBaseStats().spd + b.GetWeapon().GetStats().spd)
+                if (GetTotalSpeed(a) >= GetTotalSpeed(b))
                 {
                     state = 1;
                 }
@@ -122,6 +109,10 @@ public class M1ProjectTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //So che c'è un qualche tipo di errore, nella console vedo che mi escono messaggi ed arriva alla fine del combattimento
+        //ma non come me lo immagino e come penso dovrebbe essere.
+        //Purtroppo non sono riuscito veramente a capire quali errori possa aver commesso, quando mi corregerete il lavoro vorrei proprio
+        //sapere quale fosse il mio errore... Comunque Grazie!
         Switch();
     }
 }
